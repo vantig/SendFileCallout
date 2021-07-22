@@ -1,0 +1,8 @@
+.wrapper {
+    padding: var(--lwc-varSpacingVerticalSmall, 0.75rem) var(--lwc-varSpacingHorizontalMedium, 1rem);
+    background-color: #ffffff;
+}
+
+.button > * {
+    margin-top: 10px;
+}

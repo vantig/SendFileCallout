@@ -1,0 +1,53 @@
+<template>
+    <div class='wrapper'>
+        <template if:true={isDocumentsTemplate}>
+            <div>
+                <lightning-button variant="brand-outline" label="Select file from Attachments"
+                                  onclick={handleSelectFileFromAttachmentsClick}
+                                  class=""></lightning-button>
+            </div>
+        </template>
+        <template if:true={isSelectAttachmentTemplate}>
+            <div>
+
+
+                <template if:true={attachments}>
+                    <div>
+                        <lightning-datatable key-field="Id"
+                                             data={attachments}
+                                             onrowselection={handleRowSelection}
+                                             columns={columns}>
+                        </lightning-datatable>
+
+                    </div>
+
+                    <div class="slds-m-top_x-small">
+                        <lightning-button variant="brand" label="Next"
+                                          onclick={handleNextFromAttachmentsListClick}
+                                          class="slds-m-top_x-small button"></lightning-button>
+                    </div>
+
+                </template>
+                <template if:false={attachments}>
+                    <h1>Nothing to show</h1>
+                </template>
+            </div>
+        </template>
+        <template if:true={isSignersTemplate}>
+            <div class=slds-is-relative>
+                <c-custom-lookup label="Send to" obj-name="User" search-placeholder="Search User"
+                                 icon-name="standard:user"
+                                 onlookupselected={handleUserSelection}></c-custom-lookup>
+                <div class="slds-m-top_x-small">
+                    <lightning-button variant="brand" label="Next"
+                                      onclick={handleNextFromSignersClick}
+                                      class=""></lightning-button>
+                </div>
+                <template if:true={isLoading}>
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </template>
+
+            </div>
+        </template>
+    </div>
+</template>
